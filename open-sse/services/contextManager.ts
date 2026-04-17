@@ -248,13 +248,14 @@ function purifyHistory(messages: Record<string, unknown>[], targetTokens: number
   result = fixToolPairs(result);
 
   // Add summary of dropped messages
-  if (keep < nonSystem.length) {
+  /* if (keep < nonSystem.length) {
     const dropped = nonSystem.length - keep;
     result.splice(system.length, 0, {
       role: "system",
       content: `[Context compressed: ${dropped} earlier messages removed to fit context window]`,
     });
-  }
+  } 
+DISABLED: Anthropic forbids role: \"system\" inside messages array */
 
   return result;
 }
